@@ -12,6 +12,11 @@ class Bootstrap
 		// 
 		// Start required componenets accordingly
 		
+		// Starting up error handling
+		$whoops = new \Whoops\Run;
+		$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+		$whoops->register();
+
 		// Setting current URI request
 		self::$_uri = $_SERVER['REQUEST_URI'];
 		

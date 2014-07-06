@@ -43,9 +43,8 @@ class Kernel
 				$controller_string = "home";
 				$method_string = "index";
 			}
+			echo "works till here...";
 
-			// Launch class' method based the collected info above
-			self::launchClass($controller_string, $method_string);
 		}
 	}
 
@@ -59,5 +58,9 @@ class Kernel
 
 		$tmpobj = new $classname();
 		$tmpobj->$method_name();
+	}
+
+	public static function regRoute($uri, $map) {
+
 	}
 }

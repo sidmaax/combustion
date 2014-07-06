@@ -3,5 +3,10 @@
 		"classmap": [
 			"engine/"
 		]
+	},
+	"require": {
+		"philo/laravel-blade": "dev-master",
+		"filp/whoops": "1.2.*@dev"
 	}
+
 }
