@@ -1,12 +1,13 @@
 {
-	"autoload": {
-		"classmap": [
-			"engine/"
-		]
-	},
-	"require": {
-		"philo/laravel-blade": "dev-master",
-		"filp/whoops": "1.2.*@dev"
-	}
-
+    "require" : {
+        "symfony/http-foundation": "2.6.*@dev"
+    },
+    "require-dev": {
+        "filp/whoops": "1.2.*@dev"
+    },
+    "autoload" : {
+    	"psr-0" : {
+    		"Xk0nSid" : "vendor/"
+    	}
+    }
 }
