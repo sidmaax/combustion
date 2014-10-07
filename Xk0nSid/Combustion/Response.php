@@ -1,4 +1,4 @@
-<?php namespace Xk0nSid\Combustion;
+<?php namespace Combustion;
 
 class Response {
 

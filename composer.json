@@ -8,7 +8,7 @@
     },
     "autoload" : {
     	"psr-0" : {
-    		"Xk0nSid" : "./"
+    		"Combustion" : "./Xk0nSid"
     	}
     }
 }

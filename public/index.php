@@ -5,7 +5,7 @@ define('APP_PATH', ROOT_PATH . "app/");
 
 require_once(ROOT_PATH . "vendor/autoload.php");
 
-use Xk0nSid\Kernel;
+use Combustion\Kernel;
 
 Kernel::init();
 

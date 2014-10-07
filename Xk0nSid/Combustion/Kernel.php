@@ -1,7 +1,6 @@
-<?php namespace Xk0nSid\Combustion;
-echo "Acquired Kernel";
-exit;
-use Xk0nSid\Config;
+<?php namespace Combustion;
+
+use Combustion\Config;
 
 class Kernel {
 
@@ -14,8 +13,11 @@ class Kernel {
 			$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 			$whoops->register();
 		} else {
-			// Display no errors
-			ini_set('error_reporting', '0');
+			// Display simple error message
+			set_error_handler(function($e) {
+				echo $e->getMessage();
+				exit;
+			});
 		}
 
 		// use Philo\Blade\Blade;
