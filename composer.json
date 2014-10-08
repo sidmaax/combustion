@@ -1,7 +1,8 @@
 {
     "require" : {
         "symfony/http-foundation": "2.6.*@dev",
-	   "twig/twig": "1.*"
+        "philo/laravel-blade": "dev-master",
+	"twig/twig": "1.*"
     },
     "require-dev": {
         "filp/whoops": "1.2.*@dev"

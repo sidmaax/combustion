@@ -14,7 +14,7 @@ Installation
 > You will need composer to install combustion
 
 ```sh
-git clone http://github.com/Xk0nSid/combustion.git
+git clone http://github.com/Xk0nSid/combustion.git -b dev
 cd combustion
 composer install
 ```
