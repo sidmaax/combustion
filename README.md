@@ -21,7 +21,12 @@ composer install
 
 Usage
 ------
-Create a new file in `app/controllers/DemoController.php` and put the following code in that file.
+First let's register a route. Edit `app/routes.php` . Add the following to it.
+```php
+Route::get('/demo', 'Demo@index');
+```
+
+Now create a new file in `app/controllers/DemoController.php` and put the following code in that file.
 ```php
 <?php
 
@@ -31,9 +36,10 @@ class DemoController {
     }
 }
 ```
+
 > You will need a virtual host setup to do this
 
-Now goto your browser `<host>/demo/index` .
+Now goto your browser `http://<your_domain>/demo` .
 
 
 ### License
