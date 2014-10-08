@@ -1,16 +1,32 @@
 <?php namespace Combustion;
 
-class Config {
+class Config
+{
 
-	public static function get($prop) {
-		require_once APP_PATH . "config.php";
+	private static $_configFile = null;
 
-		if ( isset($config[$prop]) ) {
-			return $config[$prop];
+	public static function get($path = null) {
+
+		if ($path && self::$_configFile) {
+
+			require self::$_configFile;
+
+			$config = $GLOBALS['config'];
+			$path = explode('/', $path);
+
+			foreach($path as $bit) {
+				if (isset($config[$bit])) {
+					$config = $config[$bit];
+				}
+			}
+
+			return $config;
+
 		}
-		else {
-			return false;
-		}
+
 	}
 
+	public static function setFile($file) {
+		self::$_configFile = $file;
+	}
 }

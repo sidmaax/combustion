@@ -1,6 +1,6 @@
 Combustion
 =========
-###### Version : v0.1
+###### Version : v0.3
 
 Combustion is a light weight PHP framework.
 
@@ -11,7 +11,7 @@ Combustion is a light weight PHP framework.
 Installation
 --------------
 
-You will need composer to install combustion
+> You will need composer to install combustion
 
 ```sh
 git clone http://github.com/Xk0nSid/combustion.git
@@ -31,7 +31,10 @@ class DemoController {
     }
 }
 ```
+> You will need a virtual host setup to do this
+
 Now goto your browser `<host>/demo/index` .
+
 
 ### License
 

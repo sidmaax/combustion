@@ -4,7 +4,13 @@ use Combustion\Config;
 
 class Kernel {
 
+	private static $_getRoutes = array();
+	private static $_postRoutes = array();
+
 	public static function init() {
+
+		// setup configuration
+		Config::setFile(APP_PATH . "config" . EXT);
 
 		// Setup error handling
 		if ( Config::get('debug') ) {
@@ -13,36 +19,95 @@ class Kernel {
 			$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 			$whoops->register();
 		} else {
-			// Display simple error message
-			set_error_handler(function($e) {
+			// Setup custom exception handler
+			set_exception_handler(function($e) {
 				echo $e->getMessage();
+				exit;
+			});
+
+			// Setup custom error handler
+			set_error_handler(function($e) {
+				var_dump($e);
 				exit;
 			});
 		}
 
-		// use Philo\Blade\Blade;
+		// Setup class aliases for easy access
+		$aliases = Config::get('aliases');
+		foreach($aliases as $class=>$alias) {
+			class_alias($class, $alias);
+		}
 
-		// $views = __DIR__ . '/views';
-		// $cache = __DIR__ . '/cache';
+		// Register routes
+		require_once(APP_PATH . "routes" . EXT);
 
-		// $blade = new Blade($views, $cache);
-		// echo $blade->view()->make('hello');
 
 	}
 
-	public static function dispatch($uri) {
-
-		// Temp handle for index
-		if ( $uri === '/' ) {
-			$controller = 'home';
-			$method = 'index';
+	public static function registerRoute($type, $uri, $action) {
+		// check type
+		if ( $type === 'get' ) {
+			if ( array_key_exists($uri, self::$_getRoutes) ) {
+				throw new \Combustion\Errors\DuplicateRoute($uri);
+				return;
+			}
+			else {
+				self::$_getRoutes[$uri] = $action;
+			}
 		}
-		else {
-			$uri = explode('/', $uri);
-
-			$controller = $uri[1];
-			$method = $uri[2];
+		if ( $type === 'post' ) {
+			if ( array_key_exists($uri, self::$_postRoutes) ) {
+				throw new \Combustion\Errors\DuplicateRoute($uri);
+				return false;
+			} else {
+				self::$_postRoutes[$uri] = $action;
+				return true;	
+			}
 		}
+
+		return false;
+	}
+
+	public static function process($uri) {
+
+		// Check request typ
+		if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
+
+			// Check if route is registered in get global variable
+			if ( array_key_exists($uri, self::$_getRoutes) ) {
+				// Dispatch route if registered
+				$action = self::$_getRoutes[$uri];
+				self::dispatch($action);
+			}
+			else {
+				// else throw an exception
+				throw new \Combustion\Errors\RouteNotFound($uri);
+			}
+
+		} else if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+			// Check if route is registered in post global variable
+			if ( array_key_exists($uri, self::$_postRoutes) ) {
+				// Dispatch route if registered
+				$action = self::$_postRoutes[$uri];
+				self::dispatch($action);
+			}
+			else {
+				// else throw an exception
+				throw new \Combustion\Errors\RouteNotFound($uri);
+			}
+		} else {
+			throw new \Exception("Unknown request type");
+			
+		}
+
+	}
+
+	private static function dispatch($action) {
+
+		$action = explode('@', $action);
+
+		$controller = $action[0];
+		$method = $action[1];
 
 		$className = ucfirst($controller)."Controller";
 
