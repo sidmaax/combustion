@@ -1,7 +1,7 @@
 {
     "require" : {
         "symfony/http-foundation": "2.6.*@dev",
-        "monolog/monolog": "1.11.*@dev"
+        "psr/log": "1.0.*@dev"
     },
     "require-dev": {
         "filp/whoops": "1.2.*@dev"
