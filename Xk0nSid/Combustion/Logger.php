@@ -7,7 +7,7 @@ class Logger implements LoggerInterface {
 	private $_logFile;
 
 	public function __construct($logFile) {
-		$this->_logFile = fopen($logFile, 'w');
+		$this->_logFile = fopen($logFile, 'a');
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Logger implements LoggerInterface {
 			}
 			$errorString = $errorString . "]";
 		}
-		fwrite($this->_logFile, $errorString);
+		fwrite($this->_logFile, $errorString . "\n");
     }
 
     /**
@@ -91,7 +91,7 @@ class Logger implements LoggerInterface {
 			}
 			$errorString = $errorString . "]";
 		}
-		fwrite($this->_logFile, $errorString);
+		fwrite($this->_logFile, $errorString . "\n");
     }
 
     /**
@@ -125,7 +125,7 @@ class Logger implements LoggerInterface {
 			}
 			$errorString = $errorString . "]";
 		}
-		fwrite($this->_logFile, $errorString);
+		fwrite($this->_logFile, $errorString . "\n");
     }
 
     /**
@@ -158,7 +158,7 @@ class Logger implements LoggerInterface {
 			}
 			$errorString = $errorString . "]";
 		}
-		fwrite($this->_logFile, $errorString);
+		fwrite($this->_logFile, $errorString . "\n");
     }
 
     public function __destruct() {

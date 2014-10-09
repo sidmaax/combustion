@@ -24,13 +24,14 @@ class Kernel {
 			// Setup custom exception handler
 			set_exception_handler(function($e) {
 				$logger = new Logger(LOG_FILE);
-				$logger->log(1, 'Sid');
+				$logger->log(1, $e->getMessage());
 				exit;
 			});
 
 			// Setup custom error handler
 			set_error_handler(function($e) {
-				
+				$logger = new Logger(LOG_FILE);
+				$logger->log(1, $e->getMessage());
 				exit;
 			});
 		}
