@@ -1,14 +1,14 @@
 {
     "require" : {
         "symfony/http-foundation": "2.6.*@dev",
-	    "twig/twig": "1.*"
+        "monolog/monolog": "1.11.*@dev"
     },
     "require-dev": {
         "filp/whoops": "1.2.*@dev"
     },
     "autoload" : {
-    	"psr-0" : {
-    		"Combustion" : "./Xk0nSid"
+    	"psr-4" : {
+    		"Combustion\\" : "./Xk0nSid/Combustion"
     	}
     }
 }

@@ -1,6 +1,7 @@
 <?php namespace Combustion;
 
 use Combustion\Config;
+use Combustion\Logger;
 
 class Kernel {
 
@@ -19,15 +20,17 @@ class Kernel {
 			$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 			$whoops->register();
 		} else {
+
 			// Setup custom exception handler
 			set_exception_handler(function($e) {
-				echo $e->getMessage();
+				$logger = new Logger(LOG_FILE);
+				$logger->log(1, 'Sid');
 				exit;
 			});
 
 			// Setup custom error handler
 			set_error_handler(function($e) {
-				var_dump($e);
+				
 				exit;
 			});
 		}
