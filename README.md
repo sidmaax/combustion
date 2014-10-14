@@ -1,6 +1,6 @@
 Combustion
 =========
-###### Version : v0.3
+###### Version : v0.4
 
 Combustion is a light weight PHP framework.
 
