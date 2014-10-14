@@ -18,8 +18,11 @@ git clone http://github.com/Xk0nSid/combustion.git -b dev
 cd combustion
 composer install
 ```
+Now goto `http://<your_domain>`
+You will see a simple home view. You can check how this view is generated
+by going to file `app/controllers/HomeController.php`
 
-Usage
+Getting Started
 ------
 First let's register a route. Edit `app/routes.php` . Add the following to it.
 ```php
@@ -40,7 +43,6 @@ class DemoController {
 > You will need a virtual host setup to do this
 
 Now goto your browser `http://<your_domain>/demo` .
-
 
 ### License
 
